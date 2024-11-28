@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<!--ICD20-Unit-5.4-HTML and JavaScript Assignment - food -->
+<html lang="en-ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="My five favority foods"/>
+    <meta name="keywords" content="Newtonbrook, ICD20, HTML, JavaScript, foods"/>
+    <meta name="author" content="Min Cho"/>   
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My favorite Top 5 Foods</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f9f9f9;
+            padding: 20px;
+        }
+        h1 {
+            color: #4CAF50;
+        }
+        .food-list {
+            margin-bottom: 20px;
+        }
+        .food-option {
+            padding: 10px;
+            background-color: #e7f7e7;
+            border: 1px solid #ddd;
+            margin: 5px;
+            cursor: pointer;
+        }
+        .food-option:hover {
+            background-color: #d4edda;
+        }
+        .input-container {
+            margin-bottom: 20px;
+        }
+        .food-details {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            display: inline-block;
+            width: 60%;
+            text-align: left;
+        }
+        .food-image {
+            width: 100%;
+            max-width: 400px;
+        }
+        .food-description {
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Top 5 Favorite Foods</h1>
+
+    <!-- List of foods displayed on the page -->
+    <div class="food-list">
+        <p><strong>Click or enter a number (1 to 5) to learn about a food:</strong></p>
+        <div class="food-option" onclick="showFoodDetails(1)">1. kimchi jjigae</div>
+        <div class="food-option" onclick="showFoodDetails(2)">2. samgyeobsal</div>
+        <div class="food-option" onclick="showFoodDetails(3)">3. Gorgonzola Pizza</div>
+        <div class="food-option" onclick="showFoodDetails(4)">4. Jobchae</div>
+        <div class="food-option" onclick="showFoodDetails(5)">5. Galbi</div>
+    </div>
+
+    <!-- Input field to enter a number between 1 and 5 -->
+    <div class="input-container">
+        <label for="food-number">Or enter a number between 1 and 5:</label><br>
+        <input type="number" id="food-number" min="1" max="5" required>
+        <button onclick="showFoodDetailsFromInput()">Submit</button>
+    </div>
+
+    <!-- Food details displayed below when a valid food number is entered or clicked -->
+    <div id="food-details" class="food-details" style="display: none;">
+        <img id="food-image" class="food-image" alt="Food Image">
+        <h2 id="food-name"></h2>
+        <p id="food-description" class="food-description"></p>
+        <p><strong>Average User Review Score: </strong><span id="user-review-score"></span></p>
+    </div>
+
+    <script>
+        const foods = [
+            {
+                name: "Kimchi jjigae",
+                image: "Img/kimchijjigae.jpg", 
+                description: "About Kimchi Jjigae....Please...",
+            },
+            {
+                name: "samgyeobsal",
+                image: "Img/samgyeobsal.jpg", 
+                description: "About Samgyeobsal..... Please...",
+            },
+            {
+                name: "Gorgonzola Pizza",
+                image: "Img/Gorgonzola_Pizza.jpg", 
+                description: "About Gorgonezola Pizza.... Please ...",
+            },
+            {
+                name: "Jabchae",
+                image: "Img/Jabchae.jpg", 
+                description: "About Jabchae.....Please...",
+            },
+            {
+                name: "Galbi",
+                image: "Img/galbi.jpg", 
+                description: "About Galbi.....Please....",
+            },
+        ];
+
+        // Display food details based on the number clicked or entered
+        function showFoodDetails(foodNumber) {
+            const food = foods[foodNumber - 1];
+            const randomScores = generateRandomScores();
+            const averageScore = calculateAverage(randomScores);
+
+            document.getElementById("food-name").textContent = food.name;
+            document.getElementById("food-description").textContent = food.description;
+            document.getElementById("food-image").src = food.image;
+            document.getElementById("user-review-score").textContent = averageScore.toFixed(2);
+
+            document.getElementById("food-details").style.display = "block";
+        }
+
+        // Display food details based on the number entered in the input field
+        function showFoodDetailsFromInput() {
+            const foodNumber = document.getElementById("food-number").value;
+            if (foodNumber >= 1 && foodNumber <= 5) {
+                showFoodDetails(parseInt(foodNumber));
+            } else {
+                alert("Please enter a number between 1 and 5.");                
+            }
+        }
+
+        // Generate 5 random user scores between 1 and 5
+        function generateRandomScores() {
+            let scores = [];
+            for (let i = 0; i < 5; i++) {
+                scores.push(Math.floor(Math.random() * 5) + 1); // Random scores between 1 and 5
+            }
+            return scores;
+        }
+
+        // Calculate the average score from the random scores
+        function calculateAverage(scores) {
+            const sum = scores.reduce((total, score) => total + score, 0);
+            return sum / scores.length;
+        }
+    </script>
+</body>
+</html>
