@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<!--ICD20-Unit-5.4-HTML and JavaScript Assignment - food -->
+<html lang="en-ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="My five favority foods"/>
+    <meta name="keywords" content="Newtonbrook, ICD20, HTML, JavaScript, foods"/>
+    <meta name="author" content="Min Cho"/>   
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My favorite Top 5 Foods</title>
+    <link rel="stylesheet" href="css/my.css">
+</head>
+<body>
+    <h1>Food List</h1>
+    <ul id="food-list">
+        <li>1. Kimchi Jjigae</li>
+        <li>2. Samgyeopbsal</li>
+        <li>3. Jabchae</li>
+        <li>4. Galbi</li>
+        <li>5.Gorgonzola Pizza</li>
+    </ul>
+
+    <div id="input-section">
+        <label for="food-number">Enter a food number(1-5):</label>
+        <input type="number" id="food-number" min="1" max="5">
+        <button onclick="displayFoodInfo()">Submit</button>
+    </div>
+
+    <div id="food-info"></div>
+    <script src="js/my.js"></script>
+</body>
+</html>
